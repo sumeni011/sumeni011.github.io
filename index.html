@@ -3,12 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>나의 첫 웹페이지</title>
-    <script src="script.js"></script>  
+</head>
+<style>
+    /* Loading bar styles */
+    #loading-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 5px;
+        background-color: #3498db;
+        z-index: 9999;
+        transition: width 0.4s ease;
+    }
+</style>
+<script>
+    // Loading bar functionality
+    document.addEventListener("DOMContentLoaded", () => {
+        const loadingBar = document.getElementById("loading-bar");
+        let width = 0;
+        loadingBar.style.display = "block";
+        const interval = setInterval(() => {
+            width += 10;
+            loadingBar.style.width = width + "%";
+            if (width >= 100) {
+                clearInterval(interval);
+                setTimeout(() => {
+                    loadingBar.style.display = "none";
+                }, 500);
+            }
+        }, 200);
+    });
+</script>
+<head>
 </head>
 <body>
+    <div id="loading-bar"></div>
     <h1>안녕하세요! 👋</h1>
     <p>이곳은 GitHub Pages로 만든 저의 첫 번째 웹페이지입니다.</p>
     <p id="message">과제 제출용으로 만들었습니다. 방문해 주셔서 감사합니다! 이제 나가주세요.</p>
     <button onclick="checkJS()">JS 연결 확인하기</button>
+    <script src="script.js"></script>
 </body>
 </html>
